@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["import", "react", "react-hooks", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      },
+      "webpack": {
+        "config": "./build/webpack.base.js"
+      }
+    }
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "prettier/prettier": "error",
+    "global-require": "off",
+    "react/jsx-one-expression-per-line": 0,
+    "react/button-has-type": 0,
+    "endOfLine": "auto",
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "no-lonely-if": 0,
+    "prefer-const": 0,
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "import/no-unresolved": [2, { "ignore": ["./src/**"] }]
+  }
+}

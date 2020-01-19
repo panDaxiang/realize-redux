@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>demo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" style="font-size: 16px;"></div>
+    <script>
+      // 移动端rem适配方案
+      ;(function(doc, win) {
+        var setFontSize = function() {
+          var docEle = doc.documentElement
+          var designWidth = 750
+          var screenWidth = docEle.clientWidth
+          docEle.style.fontSize = (screenWidth / designWidth) * 100 + 'px'
+        }
+
+        setFontSize()
+        win.addEventListener('resize', setFontSize, false)
+        win.addEventListener('orientationchange', setFontSize, false)
+      })(document, window)
+    </script>
+  </body>
+</html>

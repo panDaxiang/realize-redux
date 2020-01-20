@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import store from '@/store'
-import { INCREMENT, DECREMENT} from '@/store/action-types'
-console.log(INCREMENT)
+import { bindActionCreator } from '@/redux'
+import actions from '@/store/actions'
+
+const s = bindActionCreator(actions, store.dispatch)
 
 const Btn = styled.button`
   display: inline-block;
@@ -11,6 +13,7 @@ const Btn = styled.button`
   padding:5px 20px 5px;
   border-radius: 5px;
   outline: none;
+  cursor: pointer;
 `
 
 class Counter extends Component {
@@ -21,7 +24,7 @@ class Counter extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.unsubscribe = store.subscribe(() => {
       this.setState({
         number: store.getState().counter.number
@@ -38,8 +41,8 @@ class Counter extends Component {
     return (
       <div>
         {number}
-        <Btn onClick={() => store.dispatch({type: INCREMENT})}>+</Btn>
-        <Btn onClick={() => store.dispatch({type: DECREMENT})}>-</Btn>
+        <Btn onClick={s.increment}>+</Btn>
+        <Btn onClick={s.decrement}>-</Btn>
       </div>
     )
   }

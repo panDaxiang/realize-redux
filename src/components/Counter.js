@@ -1,48 +1,34 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { connect } from '@/react-redux'
 
-import store from '@/store'
-import { bindActionCreator } from '@/redux'
 import actions from '@/store/actions'
-
-const s = bindActionCreator(actions, store.dispatch)
+import { bindActionCreator } from '@/redux'
 
 const Btn = styled.button`
   display: inline-block;
   margin-left: 20px;
-  padding:5px 20px 5px;
+  padding: 5px 20px 5px;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
 `
-
+@connect(
+  state => state.counter,
+  dispatch => bindActionCreator(actions, dispatch),
+)
 class Counter extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      number: 0
-    }
-  }
-
-  componentDidMount(){
-    this.unsubscribe = store.subscribe(() => {
-      this.setState({
-        number: store.getState().counter.number
-      })
-    })
-  }
-
-  componentWillUnmount(){
-    this.unsubscribe()
   }
 
   render() {
-    const { number } = this.state
+    const { increment, decrement, number } = this.props
     return (
       <div>
         {number}
-        <Btn onClick={s.increment}>+</Btn>
-        <Btn onClick={s.decrement}>-</Btn>
+        <Btn onClick={increment}>+</Btn>
+        <Btn onClick={decrement}>-</Btn>
       </div>
     )
   }

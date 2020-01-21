@@ -24,7 +24,7 @@ const devConfig = {
   },
   devServer: {
     overlay: true,
-    port: 3000,
+    port: 3001,
     // open: true,
     stats: 'errors-only',
     // hot:true,
